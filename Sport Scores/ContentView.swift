@@ -8,9 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showResults = false
+    @ObservedObject var viewModel: ContentViewModel
+    
+    init() {
+        let scoreFetcher = ScoreFetcher()
+        self.viewModel = ContentViewModel(scoreFetcher: scoreFetcher)
+    }
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        if (!showResults) {
+        Button("Get Results") {
+            showResults.toggle()
+        }
+        } else {
+            ProgressView()
+            Text("Showing Results").font(.largeTitle).onAppear(perform: viewModel.refresh)
+        }
     }
 }
 
