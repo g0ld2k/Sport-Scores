@@ -49,7 +49,7 @@ extension ScoreFetcher: ScoreFetchable {
     func decode<T: Decodable>(_ data: Data) -> AnyPublisher<T, ScoreError> {
       let decoder = JSONDecoder()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
+        dateFormatter.dateFormat = "MMM d, yyyy h:mm:ss a"
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
 
       return Just(data)
