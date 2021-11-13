@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8378C56E273F67E20024E02A /* ScoresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C56D273F67E20024E02A /* ScoresViewModel.swift */; };
+		8378C570273F6E940024E02A /* ScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C56F273F6E940024E02A /* ScoresView.swift */; };
+		8378C572273F6F830024E02A /* ScoreRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C571273F6F830024E02A /* ScoreRowView.swift */; };
+		8378C575273F79CE0024E02A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C574273F79CE0024E02A /* Score.swift */; };
 		83BAEAFC273CBDCC008B1A45 /* Sport_ScoresApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAEAFB273CBDCC008B1A45 /* Sport_ScoresApp.swift */; };
 		83BAEAFE273CBDCC008B1A45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAEAFD273CBDCC008B1A45 /* ContentView.swift */; };
 		83BAEB00273CBDCD008B1A45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAEAFF273CBDCD008B1A45 /* Assets.xcassets */; };
@@ -14,9 +18,7 @@
 		83BAEB0D273CBDCD008B1A45 /* Sport_ScoresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAEB0C273CBDCD008B1A45 /* Sport_ScoresTests.swift */; };
 		83BAEB17273CBDCD008B1A45 /* Sport_ScoresUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAEB16273CBDCD008B1A45 /* Sport_ScoresUITests.swift */; };
 		83BAEB19273CBDCD008B1A45 /* Sport_ScoresUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAEB18273CBDCD008B1A45 /* Sport_ScoresUITestsLaunchTests.swift */; };
-		83BAEB27273D6CCE008B1A45 /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAEB26273D6CCE008B1A45 /* Responses.swift */; };
-		83BAEB29273D723E008B1A45 /* ScoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAEB28273D723E008B1A45 /* ScoreError.swift */; };
-		83BAEB2B273D7285008B1A45 /* ScoreFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAEB2A273D7285008B1A45 /* ScoreFetcher.swift */; };
+		83BAEB27273D6CCE008B1A45 /* API Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAEB26273D6CCE008B1A45 /* API Responses.swift */; };
 		83BAEB2D273E0EFD008B1A45 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAEB2C273E0EFD008B1A45 /* ContentViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8378C56D273F67E20024E02A /* ScoresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresViewModel.swift; sourceTree = "<group>"; };
+		8378C56F273F6E940024E02A /* ScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresView.swift; sourceTree = "<group>"; };
+		8378C571273F6F830024E02A /* ScoreRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreRowView.swift; sourceTree = "<group>"; };
+		8378C574273F79CE0024E02A /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		83BAEAF8273CBDCC008B1A45 /* Sport Scores.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sport Scores.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BAEAFB273CBDCC008B1A45 /* Sport_ScoresApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport_ScoresApp.swift; sourceTree = "<group>"; };
 		83BAEAFD273CBDCC008B1A45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,9 +54,7 @@
 		83BAEB12273CBDCD008B1A45 /* Sport ScoresUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sport ScoresUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BAEB16273CBDCD008B1A45 /* Sport_ScoresUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport_ScoresUITests.swift; sourceTree = "<group>"; };
 		83BAEB18273CBDCD008B1A45 /* Sport_ScoresUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport_ScoresUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		83BAEB26273D6CCE008B1A45 /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
-		83BAEB28273D723E008B1A45 /* ScoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreError.swift; sourceTree = "<group>"; };
-		83BAEB2A273D7285008B1A45 /* ScoreFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreFetcher.swift; sourceTree = "<group>"; };
+		83BAEB26273D6CCE008B1A45 /* API Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API Responses.swift"; sourceTree = "<group>"; };
 		83BAEB2C273E0EFD008B1A45 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +83,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8378C573273F79A80024E02A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				83BAEB26273D6CCE008B1A45 /* API Responses.swift */,
+				8378C574273F79CE0024E02A /* Score.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		83BAEAEF273CBDCC008B1A45 = {
 			isa = PBXGroup;
 			children = (
@@ -102,12 +115,15 @@
 		83BAEAFA273CBDCC008B1A45 /* Sport Scores */ = {
 			isa = PBXGroup;
 			children = (
-				83BAEB25273D6C8F008B1A45 /* API */,
+				8378C573273F79A80024E02A /* Models */,
 				83BAEAFB273CBDCC008B1A45 /* Sport_ScoresApp.swift */,
 				83BAEAFD273CBDCC008B1A45 /* ContentView.swift */,
 				83BAEAFF273CBDCD008B1A45 /* Assets.xcassets */,
 				83BAEB01273CBDCD008B1A45 /* Preview Content */,
 				83BAEB2C273E0EFD008B1A45 /* ContentViewModel.swift */,
+				8378C56D273F67E20024E02A /* ScoresViewModel.swift */,
+				8378C56F273F6E940024E02A /* ScoresView.swift */,
+				8378C571273F6F830024E02A /* ScoreRowView.swift */,
 			);
 			path = "Sport Scores";
 			sourceTree = "<group>";
@@ -137,16 +153,6 @@
 			path = "Sport ScoresUITests";
 			sourceTree = "<group>";
 		};
-		83BAEB25273D6C8F008B1A45 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				83BAEB26273D6CCE008B1A45 /* Responses.swift */,
-				83BAEB28273D723E008B1A45 /* ScoreError.swift */,
-				83BAEB2A273D7285008B1A45 /* ScoreFetcher.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,6 +163,7 @@
 				83BAEAF4273CBDCC008B1A45 /* Sources */,
 				83BAEAF5273CBDCC008B1A45 /* Frameworks */,
 				83BAEAF6273CBDCC008B1A45 /* Resources */,
+				8378900D273F1DDB00A3198B /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -272,16 +279,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8378900D273F1DDB00A3198B /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		83BAEAF4273CBDCC008B1A45 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83BAEB2B273D7285008B1A45 /* ScoreFetcher.swift in Sources */,
-				83BAEB27273D6CCE008B1A45 /* Responses.swift in Sources */,
+				83BAEB27273D6CCE008B1A45 /* API Responses.swift in Sources */,
 				83BAEB2D273E0EFD008B1A45 /* ContentViewModel.swift in Sources */,
-				83BAEB29273D723E008B1A45 /* ScoreError.swift in Sources */,
+				8378C56E273F67E20024E02A /* ScoresViewModel.swift in Sources */,
+				8378C570273F6E940024E02A /* ScoresView.swift in Sources */,
+				8378C572273F6F830024E02A /* ScoreRowView.swift in Sources */,
 				83BAEAFE273CBDCC008B1A45 /* ContentView.swift in Sources */,
+				8378C575273F79CE0024E02A /* Score.swift in Sources */,
 				83BAEAFC273CBDCC008B1A45 /* Sport_ScoresApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

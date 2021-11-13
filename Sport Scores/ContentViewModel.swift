@@ -19,23 +19,31 @@ class ContentViewModel: ObservableObject, Identifiable {
     }
     
     func refresh() {
-        scoreFetcher
-            .latestScores()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] value in
-                guard let self = self else {return}
-                switch value {
-                case .failure:
-                    self.dataSource = nil
-                    print("Failure encountered \(value)")
-                case .finished:
-                    break
-                }
-            }, receiveValue: { [weak self] scores in
-                guard let self = self else { return }
-//                self.dataSource = scores
-                print(".sink() received \(scores)")
-            })
-            .store(in: &disposables)
+//        scoreFetcher
+//            .latestScores()
+////            .map(ScoreRowViewModel.init)
+//            .receive(on: DispatchQueue.main)
+//            .sink(receiveCompletion: { [weak self] value in
+//                guard let self = self else {return}
+//                switch value {
+//                case .failure:
+//                    self.dataSource = nil
+//                    print("Failure encountered \(value)")
+//                case .finished:
+//                    break
+//                }
+//            }, receiveValue: { [weak self] scores in
+//                guard let self = self else { return }
+////                self.dataSource = scores
+//                print(".sink() received \(scores)")
+//            })
+//            .store(in: &disposables)
+        scoreFetcher.latestScores { success, results in
+            if (success && results != nil) {
+                print(results!)
+            } else {
+                print("Something failed..")
+            }
+        }
     }
 }

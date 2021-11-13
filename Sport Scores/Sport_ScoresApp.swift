@@ -9,11 +9,9 @@ import SwiftUI
 
 @main
 struct Sport_ScoresApp: App {
-    
-    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ScoresView()
         }
     }
 }
