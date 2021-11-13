@@ -16,7 +16,7 @@ struct ScoreRowView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 15) {
-                Text(score.winner)
+                Text(score.summary())
                     .font(.system(size: 18))
                     .foregroundColor(Color.blue)
             }

@@ -28,6 +28,10 @@ class Score: Hashable {
         hasher.combine(winner)
         hasher.combine(tournament)
     }
+    
+    func summary() -> String {
+        return "\(tournament): \(winner) wins"
+    }
 }
 
 class F1Score: Score {
@@ -42,6 +46,11 @@ class F1Score: Score {
     override func hash(into hasher: inout Hasher) {
         super.hash(into: &hasher)
         hasher.combine(seconds)
+    }
+    
+    override func summary() -> String {
+        // Lewis Hamilton wins Silverstone Grand Prix by 5.856 seconds
+        return "\(winner) wins \(tournament) by \(seconds) seconds"
     }
 }
 
@@ -66,6 +75,11 @@ class NbaScore: Score {
         hasher.combine(gameNumber)
         hasher.combine(mvp)
     }
+    
+    override func summary() -> String {
+        // Lebron James leads Lakers to game 4 win in the NBA playoffs
+        return "\(mvp) leads \(winner) to game \(gameNumber) in the \(tournament)"
+    }
 }
 
 class TennisScore: Score {
@@ -84,5 +98,10 @@ class TennisScore: Score {
         super.hash(into: &hasher)
         hasher.combine(looser)
         hasher.combine(numberOfSets)
+    }
+    
+    override func summary() -> String {
+        // Roland Garros: Novak Djokovic wins against Schwartzman in 5 sets
+        return "\(tournament): \(winner) wins against \(looser) in \(numberOfSets) sets"
     }
 }
