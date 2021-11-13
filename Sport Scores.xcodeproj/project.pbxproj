@@ -11,6 +11,9 @@
 		8378C570273F6E940024E02A /* ScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C56F273F6E940024E02A /* ScoresView.swift */; };
 		8378C572273F6F830024E02A /* ScoreRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C571273F6F830024E02A /* ScoreRowView.swift */; };
 		8378C575273F79CE0024E02A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C574273F79CE0024E02A /* Score.swift */; };
+		8378C578274030AB0024E02A /* ScoreFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C577274030AB0024E02A /* ScoreFetcher.swift */; };
+		8378C57A274030FD0024E02A /* ScoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C579274030FD0024E02A /* ScoreError.swift */; };
+		8378C57C274036D30024E02A /* ScoreRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C57B274036D30024E02A /* ScoreRowViewModel.swift */; };
 		83BAEAFC273CBDCC008B1A45 /* Sport_ScoresApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAEAFB273CBDCC008B1A45 /* Sport_ScoresApp.swift */; };
 		83BAEB00273CBDCD008B1A45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAEAFF273CBDCD008B1A45 /* Assets.xcassets */; };
 		83BAEB03273CBDCD008B1A45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAEB02273CBDCD008B1A45 /* Preview Assets.xcassets */; };
@@ -42,6 +45,9 @@
 		8378C56F273F6E940024E02A /* ScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresView.swift; sourceTree = "<group>"; };
 		8378C571273F6F830024E02A /* ScoreRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreRowView.swift; sourceTree = "<group>"; };
 		8378C574273F79CE0024E02A /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		8378C577274030AB0024E02A /* ScoreFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreFetcher.swift; sourceTree = "<group>"; };
+		8378C579274030FD0024E02A /* ScoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreError.swift; sourceTree = "<group>"; };
+		8378C57B274036D30024E02A /* ScoreRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreRowViewModel.swift; sourceTree = "<group>"; };
 		83BAEAF8273CBDCC008B1A45 /* Sport Scores.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sport Scores.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BAEAFB273CBDCC008B1A45 /* Sport_ScoresApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport_ScoresApp.swift; sourceTree = "<group>"; };
 		83BAEAFF273CBDCD008B1A45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,6 +94,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		8378C5762740309C0024E02A /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8378C577274030AB0024E02A /* ScoreFetcher.swift */,
+				8378C579274030FD0024E02A /* ScoreError.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		83BAEAEF273CBDCC008B1A45 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +126,7 @@
 		83BAEAFA273CBDCC008B1A45 /* Sport Scores */ = {
 			isa = PBXGroup;
 			children = (
+				8378C5762740309C0024E02A /* API */,
 				8378C573273F79A80024E02A /* Models */,
 				83BAEAFB273CBDCC008B1A45 /* Sport_ScoresApp.swift */,
 				83BAEAFF273CBDCD008B1A45 /* Assets.xcassets */,
@@ -118,6 +134,7 @@
 				8378C56D273F67E20024E02A /* ScoresViewModel.swift */,
 				8378C56F273F6E940024E02A /* ScoresView.swift */,
 				8378C571273F6F830024E02A /* ScoreRowView.swift */,
+				8378C57B274036D30024E02A /* ScoreRowViewModel.swift */,
 			);
 			path = "Sport Scores";
 			sourceTree = "<group>";
@@ -300,11 +317,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				83BAEB27273D6CCE008B1A45 /* API Responses.swift in Sources */,
+				8378C57A274030FD0024E02A /* ScoreError.swift in Sources */,
+				8378C578274030AB0024E02A /* ScoreFetcher.swift in Sources */,
 				8378C56E273F67E20024E02A /* ScoresViewModel.swift in Sources */,
 				8378C570273F6E940024E02A /* ScoresView.swift in Sources */,
 				8378C572273F6F830024E02A /* ScoreRowView.swift in Sources */,
 				8378C575273F79CE0024E02A /* Score.swift in Sources */,
 				83BAEAFC273CBDCC008B1A45 /* Sport_ScoresApp.swift in Sources */,
+				8378C57C274036D30024E02A /* ScoreRowViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

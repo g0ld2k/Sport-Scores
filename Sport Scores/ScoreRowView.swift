@@ -8,18 +8,19 @@
 import SwiftUI
 
 struct ScoreRowView: View {
-    private let score: Score
-    init(score: Score) {
-        self.score = score
+    private let viewModel: ScoreRowViewModel
+    
+    init(viewModel: ScoreRowViewModel) {
+        self.viewModel = viewModel
     }
     
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 15) {
-                Text(score.summary())
+                Text(viewModel.summary)
                     .font(.system(size: 18))
                     .foregroundColor(Color.blue)
-                Text(score.publicationDate.formatted())
+                Text(viewModel.date)
                     .font(.footnote)
                     .foregroundColor(Color.black)
             }

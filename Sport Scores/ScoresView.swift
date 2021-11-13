@@ -18,18 +18,21 @@ struct ScoresView: View {
             }
         } else {
             VStack(alignment: .center) {
-                if (viewModel.rawScores.isEmpty) {
+                if (viewModel.dataSource.isEmpty) {
                     Text("Loading...")
-                }
-                else {
-                    Text(viewModel.rawScores[0].publicationDate.formatted())
-                }
-                List(viewModel.rawScores, id: \.self) {
-                    ScoreRowView(score: $0)
-                }.navigationBarTitle("Scores")
-                    .onAppear {
+                    ProgressView().onAppear {
                         self.viewModel.fetchScores()
                     }
+                }
+                else {
+                    Text(viewModel.scoreDate)
+                    List {
+                        Section {
+                            ForEach(viewModel.dataSource, content: ScoreRowView.init(viewModel:))
+                        }
+                    }.listStyle(.grouped)
+                }
+                
             }
         }
     }
