@@ -19,6 +19,9 @@ struct ScoreRowView: View {
                 Text(score.summary())
                     .font(.system(size: 18))
                     .foregroundColor(Color.blue)
+                Text(score.publicationDate.formatted())
+                    .font(.footnote)
+                    .foregroundColor(Color.black)
             }
         }
     }

@@ -8,7 +8,7 @@
 import Foundation
 
 class Score: Hashable {
-
+    
     private(set) var publicationDate: Date
     private(set) var winner: String
     private(set) var tournament: String
