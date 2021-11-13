@@ -30,45 +30,50 @@ class ScoresViewModel: ObservableObject {
         task = URLSession.shared.dataTaskPublisher(for: request)
             .map { $0.data }
             .decode(type: SportsScoresResponse.self, decoder: decoder)
-            .map {
-                var scores: [Score] = []
-                var latestDay: Date = $0.f1Results[0].publicationDate
-                
-                for f1Result in $0.f1Results {
-                    
-                    if latestDay < f1Result.publicationDate && !Calendar.current.isDate(latestDay, inSameDayAs: f1Result.publicationDate) {
-                        latestDay = f1Result.publicationDate
-                        scores = []
-                    } else if Calendar.current.isDate(latestDay, inSameDayAs: f1Result.publicationDate) {
-                        scores.append(F1Score(publicationDate: f1Result.publicationDate, winner: f1Result.winner, tournament: f1Result.tournament, seconds: f1Result.seconds))
-                    }
-                }
-                
-                for nbaResult in $0.nbaResults {
-                    if latestDay < nbaResult.publicationDate && !Calendar.current.isDate(latestDay, inSameDayAs: nbaResult.publicationDate) {
-                        latestDay = nbaResult.publicationDate
-                        scores = []
-                    } else if Calendar.current.isDate(latestDay, inSameDayAs: nbaResult.publicationDate) {
-                        scores.append(NbaScore(publicationDate: nbaResult.publicationDate, winner: nbaResult.winner, tournament: nbaResult.tournament, looser: nbaResult.looser, gameNumber: nbaResult.gameNumber, mvp: nbaResult.mvp))
-                    }
-                }
-                
-                for tennisResult in $0.tennis {
-                    if latestDay < tennisResult.publicationDate && !Calendar.current.isDate(latestDay, inSameDayAs: tennisResult.publicationDate) {
-                        latestDay = tennisResult.publicationDate
-                        scores = []
-                    } else if Calendar.current.isDate(latestDay, inSameDayAs: tennisResult.publicationDate) {
-                        scores.append(TennisScore(publicationDate: tennisResult.publicationDate, winner: tennisResult.winner, tournament: tennisResult.tournament, looser: tennisResult.looser, numberOfSets: tennisResult.numberOfSets))
-                    }
-                }
-                
-                return scores.sorted { rScore, lScore in
-                    rScore.publicationDate > lScore.publicationDate
-                }
-            }
+            .map { self.process(scores: $0) }
             .replaceError(with: [])
             .eraseToAnyPublisher()
             .receive(on: RunLoop.main)
             .assign(to: \ScoresViewModel.rawScores, on: self)
+    }
+    
+    private func process(scores response: SportsScoresResponse) -> [Score] {
+        var scores: [Score] = []
+        var latestDay: Date = response.f1Results[0].publicationDate
+        
+        for f1Result in response.f1Results {
+            if shouldClearScores(scoreDate: f1Result.publicationDate, latestDay: latestDay) {
+                latestDay = f1Result.publicationDate
+                scores = []
+            } else if Calendar.current.isDate(latestDay, inSameDayAs: f1Result.publicationDate) {
+                scores.append(F1Score(publicationDate: f1Result.publicationDate, winner: f1Result.winner, tournament: f1Result.tournament, seconds: f1Result.seconds))
+            }
+        }
+        
+        for nbaResult in response.nbaResults {
+            if shouldClearScores(scoreDate: nbaResult.publicationDate, latestDay: latestDay) {
+                latestDay = nbaResult.publicationDate
+                scores = []
+            } else if Calendar.current.isDate(latestDay, inSameDayAs: nbaResult.publicationDate) {
+                scores.append(NbaScore(publicationDate: nbaResult.publicationDate, winner: nbaResult.winner, tournament: nbaResult.tournament, looser: nbaResult.looser, gameNumber: nbaResult.gameNumber, mvp: nbaResult.mvp))
+            }
+        }
+        
+        for tennisResult in response.tennis {
+            if shouldClearScores(scoreDate: tennisResult.publicationDate, latestDay: latestDay) {
+                latestDay = tennisResult.publicationDate
+                scores = []
+            } else if Calendar.current.isDate(latestDay, inSameDayAs: tennisResult.publicationDate) {
+                scores.append(TennisScore(publicationDate: tennisResult.publicationDate, winner: tennisResult.winner, tournament: tennisResult.tournament, looser: tennisResult.looser, numberOfSets: tennisResult.numberOfSets))
+            }
+        }
+        
+        return scores.sorted { rScore, lScore in
+            rScore.publicationDate > lScore.publicationDate
+        }
+    }
+    
+    private func shouldClearScores(scoreDate: Date, latestDay: Date) -> Bool {
+        return latestDay < scoreDate && !Calendar.current.isDate(latestDay, inSameDayAs: scoreDate)
     }
 }
