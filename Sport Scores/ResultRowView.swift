@@ -1,5 +1,5 @@
 //
-//  ScoreRowView.swift
+//  ResultRowView.swift
 //  Sport Scores
 //
 //  Created by Chris Golding on 11/12/21.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-/// Score Row View
-struct ScoreRowView: View {
-    private let viewModel: ScoreRowViewModel
+/// Result Row View
+struct ResultRowView: View {
+    private let viewModel: ResultRowViewModel
     
     /// Deault init
     /// - Parameter viewModel: view model to drive view
-    init(viewModel: ScoreRowViewModel) {
+    init(viewModel: ResultRowViewModel) {
         self.viewModel = viewModel
     }
     

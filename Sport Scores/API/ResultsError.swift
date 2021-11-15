@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ScoreError: Error {
+enum ResultsError: Error {
   case parsing(description: String)
   case network(description: String)
 }

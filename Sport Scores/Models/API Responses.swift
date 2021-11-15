@@ -9,9 +9,9 @@ import Foundation
 
 // MARK: - SportsScoresResponse
 struct SportsScoresResponse: Codable {
-    let f1Results: [F1Result]
-    let nbaResults: [NbaResult]
-    let tennisResults: [Tennis]
+    let f1Results: [ApiF1Result]
+    let nbaResults: [ApiNbaResult]
+    let tennisResults: [ApiTennisResult]
 
     enum CodingKeys: String, CodingKey {
         case f1Results, nbaResults
@@ -20,14 +20,14 @@ struct SportsScoresResponse: Codable {
 }
 
 // MARK: - F1Result
-struct F1Result: Codable, Hashable {
+struct ApiF1Result: Codable, Hashable {
     let publicationDate: Date
     let seconds: Double
     let tournament, winner: String
 }
 
 // MARK: - NbaResult
-struct NbaResult: Codable {
+struct ApiNbaResult: Codable {
     let gameNumber: Int
     let publicationDate: Date
     let looser, mvp, tournament: String
@@ -35,7 +35,7 @@ struct NbaResult: Codable {
 }
 
 // MARK: - Tennis
-struct Tennis: Codable {
+struct ApiTennisResult: Codable {
     let looser: String
     let numberOfSets: Int
     let publicationDate: Date

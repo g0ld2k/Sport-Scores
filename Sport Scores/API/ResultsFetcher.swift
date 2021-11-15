@@ -8,13 +8,13 @@
 import Foundation
 import Combine
 
-/// Protocol for fetching scores
-protocol ScoreFetchable {
-    func latestScores() -> AnyPublisher<[Score], ScoreError>
+/// Protocol for fetching results
+protocol ResultsFetchable {
+    func latestResults() -> AnyPublisher<[Result], ResultsError>
 }
 
-/// Data access for fetching scores
-class ScoreFetcher: ScoreFetchable {
+/// Data access for fetching results
+class ResultsFetcher: ResultsFetchable {
     private let session: URLSession
     
     /// Default init
@@ -23,18 +23,18 @@ class ScoreFetcher: ScoreFetchable {
         self.session = session
     }
     
-    /// Fetches the latest scores
-    /// - Returns: publisher of scores and score error
-    func latestScores() -> AnyPublisher<[Score], ScoreError> {
+    /// Fetches the latest results
+    /// - Returns: publisher of results and results error
+    func latestResults() -> AnyPublisher<[Result], ResultsError> {
         return fetch()
     }
     
-    /// Fetches scores from the web
-    /// - Returns: publisher of scores and score error
-    private func fetch() -> AnyPublisher<[Score], ScoreError> {
+    /// Fetches results from the web
+    /// - Returns: publisher of results and results error
+    private func fetch() -> AnyPublisher<[Result], ResultsError> {
         let urlStr = "https://ancient-wood-1161.getsandbox.com:443/results"
         guard let url = URL(string: urlStr) else {
-            let error = ScoreError.network(description: "Couldn't create URL")
+            let error = ResultsError.network(description: "Couldn't create URL")
             return Fail(error: error).eraseToAnyPublisher()
         }
         
@@ -50,14 +50,14 @@ class ScoreFetcher: ScoreFetchable {
                 self.decode(pair.data)
             }
             .map {
-                self.process(scores: $0)
+                self.process(results: $0)
             }
             .eraseToAnyPublisher()
     }
     
     /// Decodes JSON into intermediate set of models
-    /// - Returns: Publisher containing generic type and ScoreError
-    func decode<T: Decodable>(_ data: Data) -> AnyPublisher<T, ScoreError> {
+    /// - Returns: Publisher containing generic type and ResultsError
+    func decode<T: Decodable>(_ data: Data) -> AnyPublisher<T, ResultsError> {
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy h:mm:ss a"
@@ -71,52 +71,52 @@ class ScoreFetcher: ScoreFetchable {
             .eraseToAnyPublisher()
     }
     
-    /// Creates array of Scores from SportsScoreResponse
-    /// - Parameter response: unwrapped set of scores
-    /// - Returns: a consolodated array of scores
-    private func process(scores response: SportsScoresResponse) -> [Score] {
-        var scores: [Score] = []
+    /// Creates array of Results from SportsScoreResponse
+    /// - Parameter response: unwrapped set of results
+    /// - Returns: a consolodated array of results
+    private func process(results response: SportsScoresResponse) -> [Result] {
+        var results: [Result] = []
         var latestDay: Date = response.f1Results[0].publicationDate
         
         for f1Result in response.f1Results {
-            if shouldClearScores(scoreDate: f1Result.publicationDate, latestDay: latestDay) {
+            if shouldClearScores(resultDate: f1Result.publicationDate, latestDay: latestDay) {
                 latestDay = f1Result.publicationDate
-                scores = []
+                results = []
             } else if Calendar.current.isDate(latestDay, inSameDayAs: f1Result.publicationDate) {
-                scores.append(F1Score(publicationDate: f1Result.publicationDate, winner: f1Result.winner, tournament: f1Result.tournament, seconds: f1Result.seconds))
+                results.append(F1Result(publicationDate: f1Result.publicationDate, winner: f1Result.winner, tournament: f1Result.tournament, seconds: f1Result.seconds))
             }
         }
         
         for nbaResult in response.nbaResults {
-            if shouldClearScores(scoreDate: nbaResult.publicationDate, latestDay: latestDay) {
+            if shouldClearScores(resultDate: nbaResult.publicationDate, latestDay: latestDay) {
                 latestDay = nbaResult.publicationDate
-                scores = []
+                results = []
             } else if Calendar.current.isDate(latestDay, inSameDayAs: nbaResult.publicationDate) {
-                scores.append(NbaScore(publicationDate: nbaResult.publicationDate, winner: nbaResult.winner, tournament: nbaResult.tournament, looser: nbaResult.looser, gameNumber: nbaResult.gameNumber, mvp: nbaResult.mvp))
+                results.append(NbaResult(publicationDate: nbaResult.publicationDate, winner: nbaResult.winner, tournament: nbaResult.tournament, looser: nbaResult.looser, gameNumber: nbaResult.gameNumber, mvp: nbaResult.mvp))
             }
         }
         
         for tennisResult in response.tennisResults {
-            if shouldClearScores(scoreDate: tennisResult.publicationDate, latestDay: latestDay) {
+            if shouldClearScores(resultDate: tennisResult.publicationDate, latestDay: latestDay) {
                 latestDay = tennisResult.publicationDate
-                scores = []
+                results = []
             } else if Calendar.current.isDate(latestDay, inSameDayAs: tennisResult.publicationDate) {
-                scores.append(TennisScore(publicationDate: tennisResult.publicationDate, winner: tennisResult.winner, tournament: tennisResult.tournament, looser: tennisResult.looser, numberOfSets: tennisResult.numberOfSets))
+                results.append(TennisResult(publicationDate: tennisResult.publicationDate, winner: tennisResult.winner, tournament: tennisResult.tournament, looser: tennisResult.looser, numberOfSets: tennisResult.numberOfSets))
             }
         }
         
-        return scores.sorted { rScore, lScore in
+        return results.sorted { rScore, lScore in
             rScore.publicationDate > lScore.publicationDate
         }
     }
     
     /// Checks to see if a newer score exists, which is a signal to clear the latest scores
     /// - Parameters:
-    ///   - scoreDate: date of score to compare
+    ///   - resultsDate: date of result to compare
     ///   - latestDay: newest score date so far
     /// - Returns: if the scores should be cleared
-    private func shouldClearScores(scoreDate: Date, latestDay: Date) -> Bool {
-        return latestDay < scoreDate && !Calendar.current.isDate(latestDay, inSameDayAs: scoreDate)
+    private func shouldClearScores(resultDate: Date, latestDay: Date) -> Bool {
+        return latestDay < resultDate && !Calendar.current.isDate(latestDay, inSameDayAs: resultDate)
     }
 }
 

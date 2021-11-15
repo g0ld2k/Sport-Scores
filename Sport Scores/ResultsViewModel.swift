@@ -1,5 +1,5 @@
 //
-//  ScoresViewModel.swift
+//  ResultsViewModel.swift
 //  Sport Scores
 //
 //  Created by Chris Golding on 11/12/21.
@@ -8,23 +8,23 @@
 import Combine
 import SwiftUI
 
-/// Scores View Model
+/// Results View Model
 class ResultsViewModel: ObservableObject {
     private var disposables = Set<AnyCancellable>()
-    private let scoreFetcher: ScoreFetchable
+    private let resultsFetcher: ResultsFetchable
     
-    @Published var scoreDate: String = ""
-    @Published var dataSource: [ScoreRowViewModel] = []
+    @Published var resultsDate: String = ""
+    @Published var dataSource: [ResultRowViewModel] = []
     
     /// Default init
-    /// - Parameter scoreFetcher:
-    init(scoreFetcher: ScoreFetchable) {
-        self.scoreFetcher = scoreFetcher
+    /// - Parameter resultsFetcher:
+    init(resultsFetcher: ResultsFetchable) {
+        self.resultsFetcher = resultsFetcher
     }
     
-    /// Fetches latest scores
-    func fetchScores() {
-        scoreFetcher.latestScores()
+    /// Fetches latest results
+    func fetchResults() {
+        resultsFetcher.latestResults()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] value in
               guard let self = self else { return }
@@ -35,13 +35,13 @@ class ResultsViewModel: ObservableObject {
               case .finished:
                 break
               }
-            }, receiveValue: { [weak self] scores in
+            }, receiveValue: { [weak self] results in
                 guard let self = self else { return }
                 
-                self.dataSource = scores.map(ScoreRowViewModel.init)
+                self.dataSource = results.map(ResultRowViewModel.init)
                 
-                if let firstScore = scores.first {
-                    self.scoreDate = firstScore.publicationDate.formatted()
+                if let firstResult = results.first {
+                    self.resultsDate = firstResult.publicationDate.formatted()
                 }
             })
             .store(in: &disposables)

@@ -8,18 +8,18 @@
 import Foundation
 
 /// Results of NBA Game
-class NbaScore: Score {
+class NbaResult: Result {
     private(set) var looser: String
     private(set) var gameNumber: Int
     private(set) var mvp: String
     
     /// Default init
     /// - Parameters:
-    ///   - publicationDate: event date
-    ///   - winner: winner of event
-    ///   - tournament: event name
-    ///   - looser: who lost event
-    ///   - gameNumber: event game number
+    ///   - publicationDate: result date
+    ///   - winner: winner of game
+    ///   - tournament: game name
+    ///   - looser: who lost game
+    ///   - gameNumber: game number
     ///   - mvp: most valuable player of game
     init(publicationDate: Date, winner: String, tournament: String, looser: String, gameNumber: Int, mvp: String) {
         

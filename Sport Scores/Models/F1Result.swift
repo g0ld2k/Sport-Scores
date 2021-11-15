@@ -8,13 +8,13 @@
 import Foundation
 
 /// Results for F1 Race
-class F1Score: Score {
+class F1Result: Result {
     private(set) var seconds: Double
     
     /// Default init
     /// - Parameters:
-    ///   - publicationDate: date of event
-    ///   - winner: winner of event
+    ///   - publicationDate: date of result
+    ///   - winner: winner of race
     ///   - tournament: event name
     ///   - seconds: number of seconds winner won by
     init(publicationDate: Date, winner: String, tournament: String, seconds: Double) {
@@ -30,8 +30,8 @@ class F1Score: Score {
         hasher.combine(seconds)
     }
     
-    /// Generates summary for event
-    /// - Returns: event summary
+    /// Generates summary for result
+    /// - Returns: result summary
     override func summary() -> String {
         // Lewis Hamilton wins Silverstone Grand Prix by 5.856 seconds
         return "\(winner) wins \(tournament) by \(seconds) seconds"

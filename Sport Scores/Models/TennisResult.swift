@@ -7,19 +7,19 @@
 
 import Foundation
 
-/// Tennis Event Class
-class TennisScore: Score {
+/// Result of Tennis Match
+class TennisResult: Result {
     
     private(set) var looser: String
     private(set) var numberOfSets: Int
     
     /// Default init
     /// - Parameters:
-    ///   - publicationDate: event date
-    ///   - winner: event winner
+    ///   - publicationDate: result date
+    ///   - winner: match winner
     ///   - tournament: event name
-    ///   - looser: event looser
-    ///   - numberOfSets: number of sets in event
+    ///   - looser: match looser
+    ///   - numberOfSets: number of sets in match
     init(publicationDate: Date, winner: String, tournament: String, looser: String, numberOfSets: Int) {
         self.looser = looser
         self.numberOfSets = numberOfSets
@@ -35,8 +35,8 @@ class TennisScore: Score {
         hasher.combine(numberOfSets)
     }
     
-    /// Generates summary of event
-    /// - Returns: event summary
+    /// Generates summary of result
+    /// - Returns: result summary
     override func summary() -> String {
         // Roland Garros: Novak Djokovic wins against Schwartzman in 5 sets
         return "\(tournament): \(winner) wins against \(looser) in \(numberOfSets) sets"

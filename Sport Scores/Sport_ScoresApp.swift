@@ -9,17 +9,17 @@ import SwiftUI
 
 @main
 struct Sport_ScoresApp: App {
-    private let scoreFetcher: ScoreFetcher
-    private let viewModel: ScoresViewModel
+    private let resultsFetcher: ResultsFetcher
+    private let viewModel: ResultsViewModel
     
     init() {
-        scoreFetcher = ScoreFetcher()
-        viewModel = ScoresViewModel(scoreFetcher: scoreFetcher)
+        resultsFetcher = ResultsFetcher()
+        viewModel = ResultsViewModel(resultsFetcher: resultsFetcher)
     }
     
     var body: some Scene {
         WindowGroup {
-            ScoresView(viewModel: viewModel)
+            ResultsView(viewModel: viewModel)
         }
     }
 }

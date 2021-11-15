@@ -1,5 +1,5 @@
 //
-//  ScoresView.swift
+//  ResultsView.swift
 //  Sport Scores
 //
 //  Created by Chris Golding on 11/12/21.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-/// Scores View
-struct ScoresView: View {
-    @ObservedObject var viewModel: ScoresViewModel
+/// Results View
+struct ResultsView: View {
+    @ObservedObject var viewModel: ResultsViewModel
     @State private var showResults = false
     
     /// Default init
-    /// - Parameter viewModel: view model to drive score view model
-    init(viewModel: ScoresViewModel) {
+    /// - Parameter viewModel: view model to drive results view model
+    init(viewModel: ResultsViewModel) {
         self.viewModel = viewModel
     }
     
@@ -28,14 +28,14 @@ struct ScoresView: View {
                 if (viewModel.dataSource.isEmpty) {
                     Text("Loading...")
                     ProgressView().onAppear {
-                        self.viewModel.fetchScores()
+                        self.viewModel.fetchResults()
                     }
                 }
                 else {
-                    Text(viewModel.scoreDate)
+                    Text(viewModel.resultsDate)
                     List {
                         Section {
-                            ForEach(viewModel.dataSource, content: ScoreRowView.init(viewModel:))
+                            ForEach(viewModel.dataSource, content: ResultRowView.init(viewModel:))
                         }
                     }.listStyle(.grouped)
                 }

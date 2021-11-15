@@ -8,7 +8,7 @@
 import Foundation
 
 /// Base Score Class
-class Score: Hashable {
+class Result: Hashable {
     
     private(set) var publicationDate: Date
     private(set) var winner: String
@@ -27,7 +27,7 @@ class Score: Hashable {
     
     /// Comparitor funciton
     /// - Returns: comparision between score objects
-    static func == (lhs: Score, rhs: Score) -> Bool {
+    static func == (lhs: Result, rhs: Result) -> Bool {
         return lhs.publicationDate == rhs.publicationDate && lhs.tournament == rhs.tournament && lhs.winner == rhs.winner
     }
     
@@ -39,8 +39,8 @@ class Score: Hashable {
         hasher.combine(tournament)
     }
     
-    /// Generates a summary of the score results
-    /// - Returns: summary of score results
+    /// Generates a summary of the results
+    /// - Returns: summary of results
     func summary() -> String {
         return "\(tournament): \(winner) wins"
     }

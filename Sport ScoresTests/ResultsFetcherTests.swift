@@ -1,5 +1,5 @@
 //
-//  ScoreFetcherTests.swift
+//  ResultsFetcherTests.swift
 //  Sport ScoresTests
 //
 //  Created by Chris Golding on 11/14/21.
@@ -12,26 +12,26 @@ import Mocker
 
 class ScoreFetcherTests: XCTestCase {
     
-    func testFetchingScores() throws {
+    func testFetchingResults() throws {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [MockingURLProtocol.self]
         let urlSession = URLSession(configuration: configuration)
         
-        let scoreFetcher = ScoreFetcher(session: urlSession)
+        let resultFetcher = ResultsFetcher(session: urlSession)
         var token: AnyCancellable!
             
-        let scoresData: [Mock.HTTPMethod : Data] = [
+        let resultsData: [Mock.HTTPMethod : Data] = [
             .post : try! Data(contentsOf: ScoresTestsHelper.getJSON)
         ]
-        let myScoresMock = Mock(url: ScoresTestsHelper.getURL,
+        let myResultsMock = Mock(url: ScoresTestsHelper.getURL,
                                 dataType: .json,
                                 statusCode: 200,
-                                data: scoresData,
+                                data: resultsData,
                                 additionalHeaders: ["application/json": "Content-Type"])
-        myScoresMock.register()
+        myResultsMock.register()
         
         let testExpectation = expectation(description: "callback called")
-        token = scoreFetcher.latestScores()
+        token = resultFetcher.latestResults()
             .sink(receiveCompletion: { value in
                 switch value {
                 case .failure(let error):
@@ -41,16 +41,15 @@ class ScoreFetcherTests: XCTestCase {
                 case .finished:
                     testExpectation.fulfill()
                 }
-            }, receiveValue: { scores in
-                XCTAssertNotNil(scores)
-                XCTAssertEqual(scores.count, 4)
-                print("Scores: \(scores)")
-                XCTAssertEqual(scores[0].winner, "Rafael Nadal")
-                guard let nbaScore = scores[3] as? NbaScore else {
-                    XCTFail("Unable to cast Score")
+            }, receiveValue: { results in
+                XCTAssertNotNil(results)
+                XCTAssertEqual(results.count, 4)
+                XCTAssertEqual(results[0].winner, "Rafael Nadal")
+                guard let nbaResult = results[3] as? NbaResult else {
+                    XCTFail("Unable to cast Result")
                     return
                 }
-                XCTAssertEqual(nbaScore.mvp, "Lebron James")
+                XCTAssertEqual(nbaResult.mvp, "Lebron James")
             })
         
         waitForExpectations(timeout: 20, handler: nil)
