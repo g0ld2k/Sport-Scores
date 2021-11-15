@@ -16,6 +16,11 @@
 		8378C57C274036D30024E02A /* ScoreRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C57B274036D30024E02A /* ScoreRowViewModel.swift */; };
 		8378C57E2740CBEC0024E02A /* ScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C57D2740CBEC0024E02A /* ScoreTests.swift */; };
 		8378C5802740D5F50024E02A /* ScoreRowViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C57F2740D5F50024E02A /* ScoreRowViewModelTests.swift */; };
+		8378C58327417C750024E02A /* Mocker in Frameworks */ = {isa = PBXBuildFile; productRef = 8378C58227417C750024E02A /* Mocker */; };
+		8378C58627417CE70024E02A /* ScoresTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C58527417CE70024E02A /* ScoresTestHelper.swift */; };
+		8378C58827419C070024E02A /* Sports-Scores.json in Resources */ = {isa = PBXBuildFile; fileRef = 8378C58727419C070024E02A /* Sports-Scores.json */; };
+		8378C58A27419C870024E02A /* ScoreFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C58927419C870024E02A /* ScoreFetcherTests.swift */; };
+		8378C58C2741DABE0024E02A /* ScoresViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378C58B2741DABE0024E02A /* ScoresViewModelTests.swift */; };
 		83BAEAFC273CBDCC008B1A45 /* Sport_ScoresApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAEAFB273CBDCC008B1A45 /* Sport_ScoresApp.swift */; };
 		83BAEB00273CBDCD008B1A45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAEAFF273CBDCD008B1A45 /* Assets.xcassets */; };
 		83BAEB03273CBDCD008B1A45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAEB02273CBDCD008B1A45 /* Preview Assets.xcassets */; };
@@ -51,6 +56,10 @@
 		8378C57B274036D30024E02A /* ScoreRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreRowViewModel.swift; sourceTree = "<group>"; };
 		8378C57D2740CBEC0024E02A /* ScoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTests.swift; sourceTree = "<group>"; };
 		8378C57F2740D5F50024E02A /* ScoreRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreRowViewModelTests.swift; sourceTree = "<group>"; };
+		8378C58527417CE70024E02A /* ScoresTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresTestHelper.swift; sourceTree = "<group>"; };
+		8378C58727419C070024E02A /* Sports-Scores.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Sports-Scores.json"; sourceTree = "<group>"; };
+		8378C58927419C870024E02A /* ScoreFetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreFetcherTests.swift; sourceTree = "<group>"; };
+		8378C58B2741DABE0024E02A /* ScoresViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresViewModelTests.swift; sourceTree = "<group>"; };
 		83BAEAF8273CBDCC008B1A45 /* Sport Scores.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sport Scores.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BAEAFB273CBDCC008B1A45 /* Sport_ScoresApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport_ScoresApp.swift; sourceTree = "<group>"; };
 		83BAEAFF273CBDCD008B1A45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8378C58327417C750024E02A /* Mocker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +113,15 @@
 				8378C579274030FD0024E02A /* ScoreError.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		8378C58427417CD30024E02A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8378C58727419C070024E02A /* Sports-Scores.json */,
+				8378C58527417CE70024E02A /* ScoresTestHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		83BAEAEF273CBDCC008B1A45 = {
@@ -152,9 +171,12 @@
 		83BAEB0B273CBDCD008B1A45 /* Sport ScoresTests */ = {
 			isa = PBXGroup;
 			children = (
+				8378C58427417CD30024E02A /* Helpers */,
 				83BAEB0C273CBDCD008B1A45 /* Sport_ScoresTests.swift */,
 				8378C57D2740CBEC0024E02A /* ScoreTests.swift */,
 				8378C57F2740D5F50024E02A /* ScoreRowViewModelTests.swift */,
+				8378C58927419C870024E02A /* ScoreFetcherTests.swift */,
+				8378C58B2741DABE0024E02A /* ScoresViewModelTests.swift */,
 			);
 			path = "Sport ScoresTests";
 			sourceTree = "<group>";
@@ -202,6 +224,9 @@
 				83BAEB0A273CBDCD008B1A45 /* PBXTargetDependency */,
 			);
 			name = "Sport ScoresTests";
+			packageProductDependencies = (
+				8378C58227417C750024E02A /* Mocker */,
+			);
 			productName = "Sport ScoresTests";
 			productReference = 83BAEB08273CBDCD008B1A45 /* Sport ScoresTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -256,6 +281,9 @@
 				Base,
 			);
 			mainGroup = 83BAEAEF273CBDCC008B1A45;
+			packageReferences = (
+				8378C58127417C750024E02A /* XCRemoteSwiftPackageReference "Mocker" */,
+			);
 			productRefGroup = 83BAEAF9273CBDCC008B1A45 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -281,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8378C58827419C070024E02A /* Sports-Scores.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +364,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8378C58A27419C870024E02A /* ScoreFetcherTests.swift in Sources */,
+				8378C58627417CE70024E02A /* ScoresTestHelper.swift in Sources */,
 				8378C57E2740CBEC0024E02A /* ScoreTests.swift in Sources */,
+				8378C58C2741DABE0024E02A /* ScoresViewModelTests.swift in Sources */,
 				83BAEB0D273CBDCD008B1A45 /* Sport_ScoresTests.swift in Sources */,
 				8378C5802740D5F50024E02A /* ScoreRowViewModelTests.swift in Sources */,
 			);
@@ -675,6 +707,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8378C58127417C750024E02A /* XCRemoteSwiftPackageReference "Mocker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WeTransfer/Mocker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8378C58227417C750024E02A /* Mocker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8378C58127417C750024E02A /* XCRemoteSwiftPackageReference "Mocker" */;
+			productName = Mocker;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83BAEAF0273CBDCC008B1A45 /* Project object */;
 }

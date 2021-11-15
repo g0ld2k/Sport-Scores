@@ -9,15 +9,17 @@ import Combine
 import SwiftUI
 
 class ScoresViewModel: ObservableObject {
-    private let urlStr = "https://ancient-wood-1161.getsandbox.com:443/results"
-    private var task: AnyCancellable?
     private var disposables = Set<AnyCancellable>()
+    private let scoreFetcher: ScoreFetchable
     
     @Published var scoreDate: String = ""
     @Published var dataSource: [ScoreRowViewModel] = []
     
+    init(scoreFetcher: ScoreFetchable) {
+        self.scoreFetcher = scoreFetcher
+    }
+    
     func fetchScores() {
-        let scoreFetcher = ScoreFetcher()
         scoreFetcher.latestScores()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] value in

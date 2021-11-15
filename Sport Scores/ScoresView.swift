@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct ScoresView: View {
-    @ObservedObject var viewModel = ScoresViewModel()
+    @ObservedObject var viewModel: ScoresViewModel
     @State private var showResults = false
+    
+    init(viewModel: ScoresViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         if (!showResults) {
