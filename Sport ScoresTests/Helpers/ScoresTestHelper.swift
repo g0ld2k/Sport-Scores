@@ -8,7 +8,6 @@
 import Foundation
 
 class ScoresTestsHelper {
-    // GET
     public static let getURL = URL(string: "https://ancient-wood-1161.getsandbox.com:443/results")!
     public static let getJSON: URL = Bundle(for: ScoreTest.self).url(forResource: "Sports-Scores", withExtension: "json")!
 }

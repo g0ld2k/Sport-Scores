@@ -8,6 +8,7 @@
 import Combine
 import SwiftUI
 
+/// Scores View Model
 class ScoresViewModel: ObservableObject {
     private var disposables = Set<AnyCancellable>()
     private let scoreFetcher: ScoreFetchable
@@ -15,10 +16,13 @@ class ScoresViewModel: ObservableObject {
     @Published var scoreDate: String = ""
     @Published var dataSource: [ScoreRowViewModel] = []
     
+    /// Default init
+    /// - Parameter scoreFetcher:
     init(scoreFetcher: ScoreFetchable) {
         self.scoreFetcher = scoreFetcher
     }
     
+    /// Fetches latest scores
     func fetchScores() {
         scoreFetcher.latestScores()
             .receive(on: DispatchQueue.main)

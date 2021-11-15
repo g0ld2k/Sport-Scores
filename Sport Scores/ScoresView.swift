@@ -7,10 +7,13 @@
 
 import SwiftUI
 
+/// Scores View
 struct ScoresView: View {
     @ObservedObject var viewModel: ScoresViewModel
     @State private var showResults = false
     
+    /// Default init
+    /// - Parameter viewModel: view model to drive score view model
     init(viewModel: ScoresViewModel) {
         self.viewModel = viewModel
     }
@@ -36,7 +39,6 @@ struct ScoresView: View {
                         }
                     }.listStyle(.grouped)
                 }
-                
             }
         }
     }

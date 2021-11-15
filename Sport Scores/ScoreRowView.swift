@@ -7,9 +7,12 @@
 
 import SwiftUI
 
+/// Score Row View
 struct ScoreRowView: View {
     private let viewModel: ScoreRowViewModel
     
+    /// Deault init
+    /// - Parameter viewModel: view model to drive view
     init(viewModel: ScoreRowViewModel) {
         self.viewModel = viewModel
     }

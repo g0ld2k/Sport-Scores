@@ -8,21 +8,29 @@
 import Foundation
 import Combine
 
+/// Protocol for fetching scores
 protocol ScoreFetchable {
     func latestScores() -> AnyPublisher<[Score], ScoreError>
 }
 
+/// Data access for fetching scores
 class ScoreFetcher: ScoreFetchable {
     private let session: URLSession
     
+    /// Default init
+    /// - Parameter session: URL session for overriding (used primarily for testing)
     init(session: URLSession = .shared) {
         self.session = session
     }
     
+    /// Fetches the latest scores
+    /// - Returns: publisher of scores and score error
     func latestScores() -> AnyPublisher<[Score], ScoreError> {
         return fetch()
     }
     
+    /// Fetches scores from the web
+    /// - Returns: publisher of scores and score error
     private func fetch() -> AnyPublisher<[Score], ScoreError> {
         let urlStr = "https://ancient-wood-1161.getsandbox.com:443/results"
         guard let url = URL(string: urlStr) else {
@@ -47,6 +55,8 @@ class ScoreFetcher: ScoreFetchable {
             .eraseToAnyPublisher()
     }
     
+    /// Decodes JSON into intermediate set of models
+    /// - Returns: Publisher containing generic type and ScoreError
     func decode<T: Decodable>(_ data: Data) -> AnyPublisher<T, ScoreError> {
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter()
@@ -61,6 +71,9 @@ class ScoreFetcher: ScoreFetchable {
             .eraseToAnyPublisher()
     }
     
+    /// Creates array of Scores from SportsScoreResponse
+    /// - Parameter response: unwrapped set of scores
+    /// - Returns: a consolodated array of scores
     private func process(scores response: SportsScoresResponse) -> [Score] {
         var scores: [Score] = []
         var latestDay: Date = response.f1Results[0].publicationDate
@@ -83,7 +96,7 @@ class ScoreFetcher: ScoreFetchable {
             }
         }
         
-        for tennisResult in response.tennis {
+        for tennisResult in response.tennisResults {
             if shouldClearScores(scoreDate: tennisResult.publicationDate, latestDay: latestDay) {
                 latestDay = tennisResult.publicationDate
                 scores = []
@@ -97,6 +110,11 @@ class ScoreFetcher: ScoreFetchable {
         }
     }
     
+    /// Checks to see if a newer score exists, which is a signal to clear the latest scores
+    /// - Parameters:
+    ///   - scoreDate: date of score to compare
+    ///   - latestDay: newest score date so far
+    /// - Returns: if the scores should be cleared
     private func shouldClearScores(scoreDate: Date, latestDay: Date) -> Bool {
         return latestDay < scoreDate && !Calendar.current.isDate(latestDay, inSameDayAs: scoreDate)
     }

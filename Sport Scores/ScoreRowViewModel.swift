@@ -7,22 +7,25 @@
 
 import Foundation
 
+/// Score Row View Model
 struct ScoreRowViewModel: Identifiable {
-    private let item: Score
+    private let score: Score
     
     var id: String {
         return date + summary
     }
     
     var summary: String {
-        return item.summary()
+        return score.summary()
     }
     
     var date: String {
-        return item.publicationDate.formatted()
+        return score.publicationDate.formatted()
     }
     
-    init(item: Score) {
-        self.item = item
+    /// Default init
+    /// - Parameter item: score
+    init(score: Score) {
+        self.score = score
     }
 }

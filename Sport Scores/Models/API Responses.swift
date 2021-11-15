@@ -11,11 +11,11 @@ import Foundation
 struct SportsScoresResponse: Codable {
     let f1Results: [F1Result]
     let nbaResults: [NbaResult]
-    let tennis: [Tennis]
+    let tennisResults: [Tennis]
 
     enum CodingKeys: String, CodingKey {
         case f1Results, nbaResults
-        case tennis = "Tennis"
+        case tennisResults = "Tennis"
     }
 }
 
