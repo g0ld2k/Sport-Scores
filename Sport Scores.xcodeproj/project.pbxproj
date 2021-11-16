@@ -105,9 +105,9 @@
 			isa = PBXGroup;
 			children = (
 				83BAEB26273D6CCE008B1A45 /* API Responses.swift */,
-				8378C574273F79CE0024E02A /* Result.swift */,
 				8378C58D2741F9340024E02A /* F1Result.swift */,
 				8378C58F2741F9590024E02A /* NbaResult.swift */,
+				8378C574273F79CE0024E02A /* Result.swift */,
 				8378C5912741F9750024E02A /* TennisResult.swift */,
 			);
 			path = Models;
@@ -116,8 +116,8 @@
 		8378C5762740309C0024E02A /* API */ = {
 			isa = PBXGroup;
 			children = (
-				8378C577274030AB0024E02A /* ResultsFetcher.swift */,
 				8378C579274030FD0024E02A /* ResultsError.swift */,
+				8378C577274030AB0024E02A /* ResultsFetcher.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
