@@ -155,14 +155,14 @@
 			isa = PBXGroup;
 			children = (
 				8378C5762740309C0024E02A /* API */,
-				8378C573273F79A80024E02A /* Models */,
-				83BAEAFB273CBDCC008B1A45 /* Sport_ScoresApp.swift */,
 				83BAEAFF273CBDCD008B1A45 /* Assets.xcassets */,
+				8378C573273F79A80024E02A /* Models */,
 				83BAEB01273CBDCD008B1A45 /* Preview Content */,
-				8378C56D273F67E20024E02A /* ResultsViewModel.swift */,
-				8378C56F273F6E940024E02A /* ResultsView.swift */,
 				8378C571273F6F830024E02A /* ResultRowView.swift */,
 				8378C57B274036D30024E02A /* ResultRowViewModel.swift */,
+				8378C56F273F6E940024E02A /* ResultsView.swift */,
+				8378C56D273F67E20024E02A /* ResultsViewModel.swift */,
+				83BAEAFB273CBDCC008B1A45 /* Sport_ScoresApp.swift */,
 			);
 			path = "Sport Scores";
 			sourceTree = "<group>";
