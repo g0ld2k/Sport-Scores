@@ -45,7 +45,7 @@ struct ResultsView: View {
                     .tint(.green)
                 }
                 else {
-                    Text(viewModel.resultsDate)
+                    Text("Results for \(viewModel.resultsDate)")
                     List {
                         Section {
                             ForEach(viewModel.dataSource, content: ResultRowView.init(viewModel:))
