@@ -15,6 +15,7 @@ class ResultsViewModel: ObservableObject {
     
     @Published var resultsDate: String = ""
     @Published var dataSource: [ResultRowViewModel] = []
+    @Published var error: String = ""
     
     /// Default init
     /// - Parameter resultsFetcher:
@@ -41,7 +42,10 @@ class ResultsViewModel: ObservableObject {
                 self.dataSource = results.map(ResultRowViewModel.init)
                 
                 if let firstResult = results.first {
-                    self.resultsDate = firstResult.publicationDate.formatted()
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    self.resultsDate = dateFormatter.string(from: firstResult.publicationDate)
                 }
             })
             .store(in: &disposables)

@@ -41,7 +41,7 @@ class ResultsViewModelTests: XCTestCase {
         let expectation = XCTestExpectation()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 XCTAssertEqual(self.viewModel.dataSource.count, 4)
-                XCTAssertEqual(self.viewModel.resultsDate, "5/9/2020, 11:15 PM")
+                XCTAssertEqual(self.viewModel.resultsDate, "2020-05-09")
 
                 expectation.fulfill()
             }
