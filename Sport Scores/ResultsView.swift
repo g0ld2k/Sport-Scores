@@ -22,14 +22,27 @@ struct ResultsView: View {
         if (!showResults) {
             Button("Get Results") {
                 showResults.toggle()
-            }.accessibilityLabel("Get Results Button")
+            }
+            .accessibilityLabel("Get Results Button")
+            .buttonStyle(.bordered)
+            .tint(.green)
         } else {
             VStack(alignment: .center) {
-                if (viewModel.dataSource.isEmpty) {
+                if (viewModel.dataSource.isEmpty && viewModel.error.isEmpty) {
                     Text("Loading...")
                     ProgressView().onAppear {
                         self.viewModel.fetchResults()
                     }
+                } else if (!viewModel.error.isEmpty) {
+                    Text("An error occured..\n\(viewModel.error)")
+                        .foregroundColor(Color.red)
+                        .font(.body)
+                    Button("Retry") {
+                        viewModel.dataSource = []
+                        viewModel.error = ""
+                    }
+                    .buttonStyle(.bordered)
+                    .tint(.green)
                 }
                 else {
                     Text(viewModel.resultsDate)
@@ -38,6 +51,11 @@ struct ResultsView: View {
                             ForEach(viewModel.dataSource, content: ResultRowView.init(viewModel:))
                         }
                     }.listStyle(.grouped)
+                    Button("Back") {
+                        showResults.toggle()
+                    }
+                    .buttonStyle(.bordered)
+                    .tint(.green)
                 }
             }
         }

@@ -23,9 +23,6 @@ struct ResultRowView: View {
                 Text(viewModel.summary)
                     .font(.system(size: 18))
                     .foregroundColor(Color.blue)
-                Text(viewModel.date)
-                    .font(.footnote)
-                    .foregroundColor(Color.black)
             }
         }
     }

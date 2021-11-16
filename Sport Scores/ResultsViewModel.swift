@@ -28,14 +28,15 @@ class ResultsViewModel: ObservableObject {
         resultsFetcher.latestResults()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] value in
-              guard let self = self else { return }
-              switch value {
-              case .failure:
-                self.dataSource = []
-                  print("Something failed... \(value)")
-              case .finished:
-                break
-              }
+                guard let self = self else { return }
+                switch value {
+                case .failure(let error):
+                    self.dataSource = []
+                    self.error = error.localizedDescription
+                case .finished:
+                    self.error = ""
+                    break
+                }
             }, receiveValue: { [weak self] results in
                 guard let self = self else { return }
                 
