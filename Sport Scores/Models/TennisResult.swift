@@ -9,10 +9,10 @@ import Foundation
 
 /// Result of Tennis Match
 class TennisResult: Result {
-    
+
     private(set) var looser: String
     private(set) var numberOfSets: Int
-    
+
     /// Default init
     /// - Parameters:
     ///   - publicationDate: result date
@@ -23,10 +23,10 @@ class TennisResult: Result {
     init(publicationDate: Date, winner: String, tournament: String, looser: String, numberOfSets: Int) {
         self.looser = looser
         self.numberOfSets = numberOfSets
-        
+
         super.init(publicationDate: publicationDate, winner: winner, tournament: tournament)
     }
-    
+
     /// Tennis hasher
     /// - Parameter hasher:
     override func hash(into hasher: inout Hasher) {
@@ -34,7 +34,7 @@ class TennisResult: Result {
         hasher.combine(looser)
         hasher.combine(numberOfSets)
     }
-    
+
     /// Generates summary of result
     /// - Returns: result summary
     override func summary() -> String {

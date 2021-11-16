@@ -9,11 +9,11 @@ import Foundation
 
 /// Base Score Class
 class Result: Hashable {
-    
+
     private(set) var publicationDate: Date
     private(set) var winner: String
     private(set) var tournament: String
-    
+
     /// Default init
     /// - Parameters:
     ///   - publicationDate: date of score results
@@ -24,13 +24,15 @@ class Result: Hashable {
         self.winner = winner
         self.tournament = tournament
     }
-    
+
     /// Comparitor funciton
     /// - Returns: comparision between score objects
     static func == (lhs: Result, rhs: Result) -> Bool {
-        return lhs.publicationDate == rhs.publicationDate && lhs.tournament == rhs.tournament && lhs.winner == rhs.winner
+        return lhs.publicationDate == rhs.publicationDate &&
+        lhs.tournament == rhs.tournament &&
+        lhs.winner == rhs.winner
     }
-    
+
     /// Score Hasher
     /// - Parameter hasher:
     func hash(into hasher: inout Hasher) {
@@ -38,7 +40,7 @@ class Result: Hashable {
         hasher.combine(winner)
         hasher.combine(tournament)
     }
-    
+
     /// Generates a summary of the results
     /// - Returns: summary of results
     func summary() -> String {

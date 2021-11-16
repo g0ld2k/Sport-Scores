@@ -15,9 +15,11 @@ class Sport_ScoresUITests: XCTestCase {
 
         app.buttons["Get Results Button"].tap()
         sleep(2)
-        
+
         XCTAssertTrue(app.tables.cells.count == 4)
-        XCTAssertTrue(app.tables.cells.element(boundBy: 0).staticTexts["Roland Garros: Rafael Nadal wins against Schwartzman  in 3 sets"].exists)
+        XCTAssertTrue(app.tables.cells.element(boundBy: 0)
+                        .staticTexts["Roland Garros: Rafael Nadal wins against Schwartzman  in 3 sets"]
+                        .exists)
     }
 
     func testLaunchPerformance() throws {

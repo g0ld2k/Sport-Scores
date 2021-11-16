@@ -15,8 +15,11 @@ class ResultRowViewModelTest: XCTestCase {
         let winner = "Toad"
         let tournament = "Mushroom Cup"
         let seconds = 5.83
-        
-        let result = F1Result(publicationDate: publicationDate, winner: winner, tournament: tournament, seconds: seconds)
+
+        let result = F1Result(publicationDate: publicationDate,
+                              winner: winner,
+                              tournament: tournament,
+                              seconds: seconds)
         let viewModel = ResultRowViewModel(result: result)
         XCTAssertEqual(viewModel.id, "12/31/1969, 7:00 PMToad wins Mushroom Cup by 5.83 seconds")
         XCTAssertEqual(viewModel.summary, "Toad wins Mushroom Cup by 5.83 seconds")

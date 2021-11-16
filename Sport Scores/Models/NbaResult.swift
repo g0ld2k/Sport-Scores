@@ -12,7 +12,7 @@ class NbaResult: Result {
     private(set) var looser: String
     private(set) var gameNumber: Int
     private(set) var mvp: String
-    
+
     /// Default init
     /// - Parameters:
     ///   - publicationDate: result date
@@ -22,14 +22,14 @@ class NbaResult: Result {
     ///   - gameNumber: game number
     ///   - mvp: most valuable player of game
     init(publicationDate: Date, winner: String, tournament: String, looser: String, gameNumber: Int, mvp: String) {
-        
+
         self.looser = looser
         self.gameNumber = gameNumber
         self.mvp = mvp
-        
+
         super.init(publicationDate: publicationDate, winner: winner, tournament: tournament)
     }
-    
+
     /// NBA Score hasher
     /// - Parameter hasher:
     override func hash(into hasher: inout Hasher) {
@@ -38,7 +38,7 @@ class NbaResult: Result {
         hasher.combine(gameNumber)
         hasher.combine(mvp)
     }
-    
+
     /// Summary of NBA Game
     /// - Returns: game summary
     override func summary() -> String {

@@ -10,7 +10,7 @@ import Foundation
 /// Results for F1 Race
 class F1Result: Result {
     private(set) var seconds: Double
-    
+
     /// Default init
     /// - Parameters:
     ///   - publicationDate: date of result
@@ -19,17 +19,17 @@ class F1Result: Result {
     ///   - seconds: number of seconds winner won by
     init(publicationDate: Date, winner: String, tournament: String, seconds: Double) {
         self.seconds = seconds
-        
+
         super.init(publicationDate: publicationDate, winner: winner, tournament: tournament)
     }
-    
+
     /// Hasher for F1Scores
     /// - Parameter hasher:
     override func hash(into hasher: inout Hasher) {
         super.hash(into: &hasher)
         hasher.combine(seconds)
     }
-    
+
     /// Generates summary for result
     /// - Returns: result summary
     override func summary() -> String {

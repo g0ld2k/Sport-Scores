@@ -11,15 +11,15 @@ import SwiftUI
 struct ResultsView: View {
     @ObservedObject var viewModel: ResultsViewModel
     @State private var showResults = false
-    
+
     /// Default init
     /// - Parameter viewModel: view model to drive results view model
     init(viewModel: ResultsViewModel) {
         self.viewModel = viewModel
     }
-    
+
     var body: some View {
-        if (!showResults) {
+        if !showResults {
             Button("Get Results") {
                 showResults.toggle()
             }
@@ -28,12 +28,12 @@ struct ResultsView: View {
             .tint(.green)
         } else {
             VStack(alignment: .center) {
-                if (viewModel.dataSource.isEmpty && viewModel.error.isEmpty) {
+                if viewModel.dataSource.isEmpty && viewModel.error.isEmpty {
                     Text("Loading...")
                     ProgressView().onAppear {
                         self.viewModel.fetchResults()
                     }
-                } else if (!viewModel.error.isEmpty) {
+                } else if !viewModel.error.isEmpty {
                     Text("An error occured..\n\(viewModel.error)")
                         .foregroundColor(Color.red)
                         .font(.body)
@@ -43,8 +43,7 @@ struct ResultsView: View {
                     }
                     .buttonStyle(.bordered)
                     .tint(.green)
-                }
-                else {
+                } else {
                     Text("Results for \(viewModel.resultsDate)")
                     List {
                         Section {

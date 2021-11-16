@@ -12,16 +12,16 @@ import SwiftUI
 class ResultsViewModel: ObservableObject {
     private var disposables = Set<AnyCancellable>()
     private let scoreFetcher: ScoreFetchable
-    
+
     @Published var scoreDate: String = ""
     @Published var dataSource: [ScoreRowViewModel] = []
-    
+
     /// Default init
     /// - Parameter scoreFetcher:
     init(scoreFetcher: ScoreFetchable) {
         self.scoreFetcher = scoreFetcher
     }
-    
+
     /// Fetches latest scores
     func fetchScores() {
         scoreFetcher.latestScores()
@@ -37,9 +37,9 @@ class ResultsViewModel: ObservableObject {
               }
             }, receiveValue: { [weak self] scores in
                 guard let self = self else { return }
-                
+
                 self.dataSource = scores.map(ScoreRowViewModel.init)
-                
+
                 if let firstScore = scores.first {
                     self.scoreDate = firstScore.publicationDate.formatted()
                 }

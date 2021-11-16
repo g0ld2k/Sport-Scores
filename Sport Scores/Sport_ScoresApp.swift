@@ -11,12 +11,12 @@ import SwiftUI
 struct Sport_ScoresApp: App {
     private let resultsFetcher: ResultsFetcher
     private let viewModel: ResultsViewModel
-    
+
     init() {
         resultsFetcher = ResultsFetcher()
         viewModel = ResultsViewModel(resultsFetcher: resultsFetcher)
     }
-    
+
     var body: some Scene {
         WindowGroup {
             ResultsView(viewModel: viewModel)

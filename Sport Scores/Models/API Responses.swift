@@ -41,4 +41,3 @@ struct ApiTennisResult: Codable {
     let publicationDate: Date
     let tournament, winner: String
 }
-

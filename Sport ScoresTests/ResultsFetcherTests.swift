@@ -11,17 +11,17 @@ import Mocker
 @testable import Sport_Scores
 
 class ScoreFetcherTests: XCTestCase {
-    
+
     func testFetchingResults() throws {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [MockingURLProtocol.self]
         let urlSession = URLSession(configuration: configuration)
-        
+
         let resultFetcher = ResultsFetcher(session: urlSession)
         var token: AnyCancellable!
-            
-        let resultsData: [Mock.HTTPMethod : Data] = [
-            .post : try! Data(contentsOf: ScoresTestsHelper.getJSON)
+
+        let resultsData: [Mock.HTTPMethod: Data] = [
+            .post: try! Data(contentsOf: ScoresTestsHelper.getJSON)
         ]
         let myResultsMock = Mock(url: ScoresTestsHelper.getURL,
                                 dataType: .json,
@@ -29,7 +29,7 @@ class ScoreFetcherTests: XCTestCase {
                                 data: resultsData,
                                 additionalHeaders: ["application/json": "Content-Type"])
         myResultsMock.register()
-        
+
         let testExpectation = expectation(description: "callback called")
         token = resultFetcher.latestResults()
             .sink(receiveCompletion: { value in
@@ -51,7 +51,7 @@ class ScoreFetcherTests: XCTestCase {
                 }
                 XCTAssertEqual(nbaResult.mvp, "Lebron James")
             })
-        
+
         waitForExpectations(timeout: 20, handler: nil)
     }
 }
